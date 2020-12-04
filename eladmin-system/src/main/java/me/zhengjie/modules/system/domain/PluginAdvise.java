@@ -24,6 +24,10 @@ import javax.validation.constraints.*;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import org.hibernate.annotations.*;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
 import java.sql.Timestamp;
 import java.io.Serializable;
 
@@ -36,6 +40,7 @@ import java.io.Serializable;
 @Entity
 @Data
 @Table(name="sys_plugin_advise")
+@EntityListeners(AuditingEntityListener.class)
 public class PluginAdvise implements Serializable {
 
     @Id
@@ -44,12 +49,12 @@ public class PluginAdvise implements Serializable {
     private Long id;
 
     @Column(name = "create_time")
-    @CreationTimestamp
+    @CreatedDate
     @ApiModelProperty(value = "创建时间")
     private Timestamp createTime;
 
     @Column(name = "update_time")
-    @UpdateTimestamp
+    @LastModifiedDate
     @ApiModelProperty(value = "更新时间")
     private Timestamp updateTime;
 
